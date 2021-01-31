@@ -1,0 +1,24 @@
+.red-text{
+  color: red;
+}
+body{
+  font-family: Cambria;
+}
+
+.left{
+   float: left;
+}
+.center{
+   float: center;
+   
+}
+.right{
+   float: right;
+}
+div{
+  padding-right: 25px;
+  padding-left: 10px;
+}
+.underline{
+  text-decoration: underline;
+}
