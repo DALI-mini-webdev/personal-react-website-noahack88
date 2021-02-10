@@ -1,31 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import sasha from './sasha.JPG';
 import baseball from './baseball.PNG';
 import Navbar from "./components/Navbar/Navbar";
+import backgroundComponent from './components/backgroundComponent';
 
-document.body.style.backgroundColor = "aqua"
-function buttonFunction() {
-  if (document.body.style.backgroundColor === "aqua") {
-    document.body.style.backgroundColor = "aquamarine";
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state={color:"aqua"};
+    }
+
+changeColor = () => {
+  if(this.state.color === "aqua")
+  {
+    this.setState({color:"aquamarine"})
   }
-  else if (document.body.style.backgroundColor === "aquamarine") {
-    document.body.style.backgroundColor = "dodgerblue";
+  else if (this.state.color === "aquamarine")
+  {
+    this.setState({color:"dodgerblue"})
   }
   else {
-    document.body.style.backgroundColor = "aqua";
+    this.setState({color:"aqua"})
   }
-}
+  } 
 
-function App() {
+  render(){
   return (
-    <div className="App">
+    <div className={this.state.color}>
       <Navbar />
-      <head>
         <title>Page Title</title>
         <link rel="stylesheet" href="style.css"></link>
-        </head>
-        <body>
         <h1 className="underline">About me</h1>
         <div className="left">
             <h2 className="underline">Bio:</h2>
@@ -43,11 +48,17 @@ function App() {
                 <li>My favorite music genre is 90s pop/rock (ex. 3 Doors Down)</li>
                 <li>My favorite TV Show of all time is The Last Ship</li>
                 <img src={baseball} width="auto" height="300"/>
-        </div>      
-        <button onClick={buttonFunction}>Change Background Color</button>    
-        </body> 
+        </div>  
+        <button onClick={this.changeColor}>Change Background Color</button>  
+        
+        <backgroundComponent 
+          changeColor={this.changeColor}
+        />
+          
     </div>
+    
   );
+}
 }
 
        

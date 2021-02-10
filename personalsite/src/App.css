@@ -1,6 +1,16 @@
 * {
   font-family: 'Monserrat', sans-serif;
 }
+.aqua{
+  background-color: aqua;
+ 
+}
+.aquamarine{
+  background-color: aquamarine;
+}
+.dodgerblue{
+  background-color: dodgerblue;
+}
 
 body{
   font-family: Cambria;
