@@ -4,28 +4,79 @@ import sasha from './sasha.JPG';
 import baseball from './baseball.PNG';
 import Navbar from "./components/Navbar/Navbar";
 import backgroundComponent from './components/backgroundComponent';
+import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state={color:"aqua"};
+    this.state={
+      color:"aqua",
+      data: null,
+      answer:"hidden",
+      };
     }
 
 changeColor = () => {
-  if(this.state.color === "aqua")
+    if(this.state.color === "aqua")
+    {
+      this.setState({color:"aquamarine"})
+    }
+    else if (this.state.color === "aquamarine")
+    {
+      this.setState({color:"dodgerblue"})
+    }
+    else {
+      this.setState({color:"aqua"})
+    }
+  } 
+showAnswer = () => {
+  if(this.state.answer === "hidden")
   {
-    this.setState({color:"aquamarine"})
-  }
-  else if (this.state.color === "aquamarine")
-  {
-    this.setState({color:"dodgerblue"})
+    this.setState({answer:"show"})
   }
   else {
-    this.setState({color:"aqua"})
+    this.setState({answer:"hidden"})
   }
-  } 
+}
+
+fetchData = () => {
+  axios.get("https://jservice.io/api/random")
+  .then((response) => {
+    this.setState({
+      data: response.data[0]
+    })
+  }).catch((error) => {
+    console.log(error);
+  })
+}
+
+renderQuestion = () => {
+  if (this.state.data) {
+    return(
+      <div>
+        <div>Question: {this.state.data.question}</div>
+      </div>
+    )
+  } else {
+    return(<div>no question</div>)
+  }
+}
+
+renderAnswer = () => {
+  if (this.state.data) {
+    return(
+      <div>
+        <div>Answer: {this.state.data.answer}</div>
+      </div>
+    )
+  } else {
+    return(<div>no answer</div>)
+  }
+}
+
 
   render(){
+  console.log(this.state.data);
   return (
     <div className={this.state.color}>
       <Navbar />
@@ -49,12 +100,22 @@ changeColor = () => {
                 <li>My favorite TV Show of all time is The Last Ship</li>
                 <img src={baseball} width="auto" height="300"/>
         </div>  
+        <div>
         <button onClick={this.changeColor}>Change Background Color</button>  
-        
+    
+    
         <backgroundComponent 
           changeColor={this.changeColor}
         />
-          
+        </div>
+        <div>
+          <button onClick = {this.fetchData}>Click for a Jepordy question!</button>
+          {this.renderQuestion()}
+          <button onClick = {this.showAnswer}>Click to show/hide Answer!</button>
+          <div className={this.state.answer}>
+          {this.renderAnswer()}
+          </div>
+        </div>
     </div>
     
   );

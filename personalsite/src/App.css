@@ -1,6 +1,12 @@
 * {
   font-family: 'Monserrat', sans-serif;
 }
+.hidden{
+  visibility: hidden;
+}
+.show{
+  visibility: visible;
+}
 .aqua{
   background-color: aqua;
  
