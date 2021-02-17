@@ -3,8 +3,10 @@ import './App.css';
 import sasha from './sasha.JPG';
 import baseball from './baseball.PNG';
 import Navbar from "./components/Navbar/Navbar";
-import backgroundComponent from './components/backgroundComponent';
+import BackgroundComponent from './components/BackgroundComponent';
 import axios from 'axios';
+import firebase from './firebase/index';
+import ToDoBoard from './components/ToDoBoard';
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +56,7 @@ renderQuestion = () => {
   if (this.state.data) {
     return(
       <div>
+        <div>Category: {this.state.data.category.title}</div>
         <div>Question: {this.state.data.question}</div>
       </div>
     )
@@ -77,6 +80,8 @@ renderAnswer = () => {
 
   render(){
   console.log(this.state.data);
+  console.log(firebase);
+  console.log(firebase.db);
   return (
     <div className={this.state.color}>
       <Navbar />
@@ -100,11 +105,9 @@ renderAnswer = () => {
                 <li>My favorite TV Show of all time is The Last Ship</li>
                 <img src={baseball} width="auto" height="300"/>
         </div>  
-        <div>
-        <button onClick={this.changeColor}>Change Background Color</button>  
+        <div>    
     
-    
-        <backgroundComponent 
+       <BackgroundComponent 
           changeColor={this.changeColor}
         />
         </div>
@@ -116,10 +119,12 @@ renderAnswer = () => {
           {this.renderAnswer()}
           </div>
         </div>
+        <ToDoBoard />
+
     </div>
     
   );
-}
+  }
 }
 
        

@@ -1,11 +1,11 @@
 import React from 'react'
 
-const backgroundComponent = (props) => {
+const BackgroundComponent = (props) => {
     return (
         <div>
-            <button onClick={props.changeColor}> Click </button>
+            <button onClick={props.changeColor}> Change Background Color </button>
         </div>
     )
 }
 
-export default backgroundComponent;
+export default BackgroundComponent;

@@ -1,0 +1,10 @@
+.todoPostStyle{
+    width: 15rem;
+    height: 15rem;
+    background-color: navy;
+    color: white;
+}
+
+.allToDos{
+    text-align: center;
+}
